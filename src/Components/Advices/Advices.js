@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Container } from "./styles";
 import { Spinner } from "react-spinner-animated";
 import "react-spinner-animated/dist/index.css";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import Pattern from "../../Assets/pattern.svg";
 import Dice from "../../Assets/icon-dice.svg";
@@ -51,10 +53,22 @@ export default function Advices() {
     <>
       <Container>
         <p className="advice-id">
-          Advice {loading ? "Loading..." : `# ${advice.slip.id}`}
+          {loading ? (
+            <Skeleton
+              width={"10rem"}
+              enableAnimation={true}
+              baseColor={"hsl(150, 100%, 66%)"}
+            />
+          ) : (
+            ` Advice #${advice.slip.id}`
+          )}
         </p>
         <p className="advice-text">
-          {loading ? "Loading..." : `${advice.slip.advice}`}
+          {loading ? (
+            <Skeleton count={1.5} width={"20rem"} baseColor={"#DCDCDC"} />
+          ) : (
+            `${advice.slip.advice}`
+          )}
         </p>
         <img src={Pattern} alt="Pattern advice" />
         <button onClick={handleGetAdvice}>
