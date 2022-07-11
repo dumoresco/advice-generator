@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "./styles";
-import { Spinner } from "react-spinner-animated";
 import "react-spinner-animated/dist/index.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -52,20 +51,15 @@ export default function Advices() {
   return (
     <>
       <Container>
-        <p className="advice-id">
-          {loading ? (
-            <Skeleton
-              width={"10rem"}
-              enableAnimation={true}
-              baseColor={"hsl(150, 100%, 66%)"}
-            />
-          ) : (
-            ` Advice #${advice.slip.id}`
-          )}
-        </p>
+        <p className="advice-id">Advice #{advice.slip.id}</p>
         <p className="advice-text">
           {loading ? (
-            <Skeleton count={1.5} width={"20rem"} baseColor={"#DCDCDC"} />
+            <Skeleton
+              count={1.5}
+              width={"20rem"}
+              baseColor="rgba(255,255,255, 1)"
+              highlightColor="#c4c4c4"
+            />
           ) : (
             `${advice.slip.advice}`
           )}
